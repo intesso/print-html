@@ -2,6 +2,9 @@
 # print-html
 prints the actual html document
 
+it gives back the string representation of the actual html document. 
+it can be used on the client as well as on the server e.g. with jsdom.
+
 ## component installation
 
     $ component install intesso/print-html
