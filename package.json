@@ -1,7 +1,7 @@
 {
   "name": "print-html",
   "description": "prints the actual html document",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Andi Neck <andi.neck@intesso.com>",
   "contributors": [
     {
