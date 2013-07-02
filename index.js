@@ -4,11 +4,10 @@ module.exports = function printHtml(document) {
   var html = (!node) ? "" : "<!DOCTYPE " + node.name + (node.publicId ? ' PUBLIC "' + node.publicId + '"' : '') + (!node.publicId && node.systemId ? ' SYSTEM' : '') + (node.systemId ? ' "' + node.systemId + '"' : '') + '>';
 
   // add previous siblings
-  function backToStart(node) {
+  function recurse(node) {
     // first navigate to the first sibling
-    if (node.previousSibling) backToStart(node.previousSibling);
+    if (node.previousSibling) recurse(node.previousSibling);
     // then add the string representation of the nodes ('backward' recursion)
-    debug("render node", node.nodeType, node.nodeValue);
     switch (node.nodeType) {
       case 8: // comment
         html += "<!--" + node.nodeValue + "-->";
@@ -16,9 +15,7 @@ module.exports = function printHtml(document) {
         // case 10: // doctype: jsDom does not know doctype as previousSibling.
     }
   }
-  backToStart(document.documentElement);
-
+  recurse(document.documentElement);
   html += document.documentElement.outerHTML;
-  debug("render html", html);
   return html;
 }
